@@ -9,6 +9,7 @@ class Article(db.Model):
     subject_id = db.Column(db.Integer,db.ForeignKey('subject.id'))
     abstract = db.Column(db.Text)
     highlight_part = db.Column(db.Text)
+    keyword = db.Column(db.Text)
     postTime = db.Column(db.Text)
     accessNum = db.Column(db.Integer,default=0)
     commentNum = db.Column(db.Integer,default=0)
@@ -33,6 +34,7 @@ class Comment(db.Model):
     article_id = db.Column(db.Integer,db.ForeignKey('article.id'))
     content = db.Column(db.Text)
     score = 0
+    keyword = db.Column(db.Text)
     postTime = db.Column(db.Text)
     accessNum = db.Column(db.Integer,default=0)
     commentNum = db.Column(db.Integer,default=0)
