@@ -1,5 +1,5 @@
 from datetime import time, datetime
-import time
+import datetime
 import smtplib
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
@@ -248,7 +248,7 @@ def article_comment(article_id):
     user = userService.find_by_email(email)
     if user is None:
         user = User(email=email)
-    comment = Comment(user_id=user.id,email=email,article_id=article_id,content=form['content'],postTime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    comment = Comment(user_id=user.id,email=email,article_id=article_id,content=form['content'],postTime=datetime.datetime.now().strftime("%Y-%m-%d%H:%M:%S"))
     commentService.insert(comment)
     articleService.addComment(article)
     ip = ipService.find_ip_by_ip(request.remote_addr)
