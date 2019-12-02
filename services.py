@@ -34,7 +34,7 @@ class ArticleService:
         db.session.commit()
 
     def calPopularity(self,article):
-        return article.upvoteNum/max((article.upvoteNum+article.downvoteNum),1)*(article.accessNum*0.3+article.commentNum*0.7)
+        return '%.2f' % article.upvoteNum/max((article.upvoteNum+article.downvoteNum),1)*(article.accessNum*0.3+article.commentNum*0.7)
 
     def addAccess(self,article):
         article.accessNum+=1
