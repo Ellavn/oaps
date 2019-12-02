@@ -112,6 +112,7 @@ class ArticleService:
         articles.extend(Article.query.filter(Article.title.like('%%%s%%' % content)).all())
         articles.extend(Article.query.filter(Article.abstract.like('%%%s%%' % content)).all())
         articles.extend(Article.query.filter(Article.highlight_part.like('%%%s%%' % content)).all())
+        articles.extend(Article.query.filter(Article.keyword.like('%%%s%%' % content)).all())
         rec=[]
         result=[]
         for article in articles: #remove the repeat articles
@@ -210,8 +211,19 @@ class CommentService:
         db.session.commit()
 
     def search(self, content):
-        return Comment.query.filter(Comment.content.like('%%%s%%' % content)).all()
+        comments=[]
+        comments.extend(Comment.query.filter(Comment.content.like('%%%s%%' % content)).all())
+        comments.extend(Comment.query.filter(Comment.keyword.like('%%%s%%' % content)).all())
+        rec=[]
+        result=[]
+        for comment in comments: #remove the repeat comments
+            if comment.id not in rec:
+                rec.append(comment.id)
+                result.append(comment)
 
+        return  result
+    
+    
 class PasswordService:
     def change(self,password):
         db.session.commit()
