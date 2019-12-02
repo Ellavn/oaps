@@ -11,6 +11,7 @@
         Email:{{ user.email[0]+"***"+user.email[user.email.index('@'):] }}<br/>
         Abstract:{{ article.abstract }}<br/>
         Highlight Part:{{ article.highlight_part }}<br/>
+	Keyword:{{ article.keyword }}<br/>
         Download Link:<a href="../{{ article.dl_link }}">download</a>
         <button><a href="../upvote/{{ article.id }}">up:{{ article.upvoteNum }}</a></button>
         <button><a href="../downvote/{{ article.id }}">down:{{ article.downvoteNum }}</a></button>
@@ -31,6 +32,7 @@
         <p>{{ loop.index }}. Email:{{ comment.email }}</p>
         <p>PostTime:{{ comment.postTime }}</p>
         <p> Content:{{ comment.content }}</p>
+	<p> Keyword:{{ comment.keyword }}</p> 
         <button><a href="../cupvote/{{ comment.id }}">up:{{ comment.upvoteNum }}</a></button>
         <button><a href="../cdownvote/{{ comment.id }}">down:{{ comment.downvoteNum }}</a></button>
         {% if flag==1 %}
