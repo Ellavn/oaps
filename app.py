@@ -68,7 +68,7 @@ def subject(subject_id):
             articles.remove(article)
             continue
         article.score=articleService.calPopularity(article)
-        if article.score>=0.3 :
+        if article.score>=0.30 :
             particles.append(article)
     particles.sort(key=lambda item: item.score, reverse=True)
     return render_template('subject.html',subject=subject,articles = articles,particles=particles)
