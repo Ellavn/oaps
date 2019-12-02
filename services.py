@@ -13,7 +13,8 @@ class SubjectService:
         return subjects
 
     def find_by_title(self,title):
-        subjects = Subject.query.filter_by(title=title).first()
+        dbTitle=title.upper().replace(' ', '')
+        subjects = Subject.query.filter_by(dbTitle=title).first()
         return subjects
 
     def find_by_id(self,id):
